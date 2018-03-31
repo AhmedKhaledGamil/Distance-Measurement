@@ -1,0 +1,77 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\MrEng\Desktop\micro\ultraconic_with_7segment_displays.uvproj
+Project File Date:  03/31/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+linking...
+Program Size: Code=2492 RO-data=652 RW-data=12 ZI-data=612  
+".\ultraconic_with_7segment_displays.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\MrEng\\Desktop\\micro\\ultraconic_with_7segment_displays.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+</pre>
+</body>
+</html>
+   GPIO_PORTD_CR_R = 0x0F;         // allow changes to PD0-3       
+main.c(27): error:  #20: identifier "GPIO_PORTD_AMSEL_R" is undefined
+        GPIO_PORTD_AMSEL_R = 0;         // disable analog function
+main.c(28): error:  #20: identifier "GPIO_PORTD_PCTL_R" is undefined
+        GPIO_PORTD_PCTL_R = 0;                  // GPIO clear bit PCTL  
+main.c(29): error:  #20: identifier "GPIO_PORTD_DIR_R" is undefined
+        GPIO_PORTD_DIR_R = 0xF;         // PD0->PD3 output   
+main.c(30): error:  #20: identifier "GPIO_PORTD_AFSEL_R" is undefined
+        GPIO_PORTD_AFSEL_R = 0;         // no alternate function       
+main.c(31): error:  #20: identifier "GPIO_PORTD_DEN_R" is undefined
+        GPIO_PORTD_DEN_R = 0xF;         // enable digital pins PD0-PD3        
+main.c(38): error:  #20: identifier "SYSCTL_RCGCGPIO_R" is undefined
+        SYSCTL_RCGCGPIO_R |= 0x2;               // enable clock for PORT B
+main.c(40): error:  #20: identifier "SYSCTL_RCGCTIMER_R" is undefined
+        SYSCTL_RCGCTIMER_R |= 0x4;              // enable clock for T2CCP0
+main.c(42): error:  #20: identifier "GPIO_PORTB_LOCK_R" is undefined
+        GPIO_PORTB_LOCK_R = 0x4C4F434B ;
+main.c(43): error:  #20: identifier "GPIO_PORTB_CR_R" is undefined
+        GPIO_PORTB_CR_R = 0x1F;                 // allow changes to PB0-4
+main.c(44): error:  #20: identifier "GPIO_PORTB_DIR_R" is undefined
+        GPIO_PORTB_DIR_R = 0x1E;                // PB0 -> input , PB1-4 -> output
+main.c(45): error:  #20: identifier "GPIO_PORTB_AFSEL_R" is undefined
+        GPIO_PORTB_AFSEL_R = 0x01;              // enable alternative function for PB0 only
+main.c(46): error:  #20: identifier "GPIO_PORTB_PCTL_R" is undefined
+        GPIO_PORTB_PCTL_R &= ~0x000fffff; 
+main.c(48): error:  #20: identifier "GPIO_PORTB_DEN_R" is undefined
+        GPIO_PORTB_DEN_R = 0x1F  ;              // enable digital pins PB0-4
+main.c(49): error:  #20: identifier "GPIO_PORTB_AMSEL_R" is undefined
+        GPIO_PORTB_AMSEL_R = 0   ;              // no alternative function
+main.c(55): error:  #20: identifier "TIMER2_CTL_R" is undefined
+        TIMER2_CTL_R &= ~0x01;                                          // disable timer
+main.c(56): error:  #20: identifier "TIMER2_CFG_R" is undefined
+        TIMER2_CFG_R |= 0x04;                                           // Write the GPTM Configuration (GPTMCFG) register with a value of 0x0000.0004
+main.c(57): error:  #20: identifier "TIMER2_TAMR_R" is undefined
+        TIMER2_TAMR_R |= 0x17;                                          // configure for : count up - capture mode - input time mode
+main.c(60): error:  #20: identifier "TIMER2_ICR_R" is undefined
+        TIMER2_ICR_R |= 0x04;                                           // clear the flag
+main.c(62): error:  #20: identifier "TIMER2_RIS_R" is undefined
+        while((TIMER2_RIS_R&0x04)==0){};                        // wait until positive edge of the echo signal is arrived
+main.c(63): error:  #20: identifier "TIMER2_TAR_R" is undefined
+        time1 = TIMER2_TAR_R;                                           // restore value of time
+main.c(75): error:  #20: identifier "NVIC_ST_CTRL_R" is undefined
+        NVIC_ST_CTRL_R = 0 ;                            // disable systick timer
+main.c(76): error:  #20: identifier "NVIC_ST_RELOAD_R" is undefined
+        NVIC_ST_RELOAD_R  = 160 ;                       // start counting from 10 microseconds  // for 16 MHZ clock // number of counts = 160   
+main.c(77): error:  #20: identifier "NVIC_ST_CURRENT_R" is undefined
+        NVIC_ST_CURRENT_R  = 0 ;                // clear value in the current_r and clear the count flag
+main.c(141): warning:  #1-D: last line of file ends without a newline
+        
+main.c: 1 warning, 26 errors
+"main.c" - 26 Error(s), 1 Warning(s).
+compiling main.c...
+main.c(141): warning:  #1-D: last line of file ends without a newline
+        
+main.c: 1 warning, 0 errors
+"main.c" - 0 Error(s), 1 Warning(s).
